@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — LinkedIn Bookmark Exporter</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0F172A;
+      background: #F9FAFB;
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 48px 40px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0a66c2;
+      margin-bottom: 8px;
+    }
+    .last-updated {
+      font-size: 14px;
+      color: #64748B;
+      margin-bottom: 32px;
+    }
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #0F172A;
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+    p {
+      font-size: 15px;
+      color: #334155;
+      margin-bottom: 16px;
+    }
+    ul {
+      margin-bottom: 16px;
+      padding-left: 24px;
+    }
+    li {
+      font-size: 15px;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+    strong { color: #0F172A; }
+    a { color: #0a66c2; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code {
+      background: #F1F5F9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #334155;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #E2E8F0;
+      font-size: 13px;
+      color: #94A3B8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p class="last-updated">Last updated: June 2026</p>
+
+    <h2>Introduction</h2>
+    <p>
+      This privacy policy explains how <strong>GrabKit</strong> ("we", "us") handles your data in relation to the
+      <strong>LinkedIn Bookmark Exporter</strong> Chrome browser extension ("the extension"). We are committed to
+      protecting your privacy and being transparent about what the extension does and does not do with your data.
+    </p>
+    <p>
+      This policy applies only to the LinkedIn Bookmark Exporter extension and its associated website at
+      <a href="../" target="_blank" rel="noopener">grabkit.co/linkedin-bookmark-exporter</a>.
+      It does not apply to LinkedIn itself or any other third-party services.
+    </p>
+
+    <h2>Data We Do Not Collect</h2>
+    <p>
+      <strong>LinkedIn Bookmark Exporter does not collect, transmit, or store any of your personal data on external servers.</strong>
+      Specifically, we do not collect:
+    </p>
+    <ul>
+      <li>Your LinkedIn posts, bookmarks, saved content, or any LinkedIn data</li>
+      <li>Your browsing history or activity</li>
+      <li>Your LinkedIn username, password, or authentication credentials</li>
+      <li>Analytics, usage statistics, or telemetry data</li>
+      <li>Device fingerprints, IP addresses, or geolocation data</li>
+    </ul>
+
+    <h2>How the Extension Works</h2>
+    <p>
+      The extension operates entirely within your browser. It:
+    </p>
+    <ul>
+      <li><strong>Reads</strong> the content of your LinkedIn saved posts page — but only while you are logged in and actively viewing that page. This is equivalent to reading the page yourself.</li>
+      <li><strong>Converts</strong> the visible post data into your chosen export format (Markdown, CSV, or JSON).</li>
+      <li><strong>Downloads</strong> the exported file directly to your computer. The file never leaves your device.</li>
+    </ul>
+    <p>
+      No data is sent to any server controlled by GrabKit or any third party during this process.
+    </p>
+
+    <h2>Data Stored Locally on Your Device</h2>
+    <p>
+      The only data the extension stores is kept locally on your device using Chrome's built-in <code>chrome.storage.local</code> API:
+    </p>
+    <ul>
+      <li><strong>Your license key</strong> — to remember that you have purchased and activated the extension.</li>
+      <li><strong>Activation status</strong> — whether your license is currently valid.</li>
+      <li><strong>Activation metadata</strong> — a timestamp of when you activated and an internal Polar activation ID (used for device slot management).</li>
+    </ul>
+    <p>
+      This data is stored only on your device and is never transmitted to GrabKit or any third party. You can delete it at any time by uninstalling the extension.
+    </p>
+
+    <h2>Network Requests</h2>
+    <p>
+      The only external network request made by the extension is:
+    </p>
+    <ul>
+      <li><strong>License key validation</strong> — When you enter a license key, the extension sends the key to Polar.sh's validation endpoint (<code>api.polar.sh</code>) to verify it is a valid, active license. This request contains only your license key and the developer's Polar organization ID. No personal data, LinkedIn data, or browsing history is included in this request.</li>
+    </ul>
+
+    <h2>Third-Party Services</h2>
+    <p>The extension interacts with the following third-party services:</p>
+    <ul>
+      <li><strong>Polar.sh</strong> — Used solely for license key validation and activation. Polar.sh acts as our payment processor and license key distributor. See <a href="https://polar.sh/legal/privacy-policy" target="_blank" rel="noopener">Polar.sh's Privacy Policy</a>.</li>
+      <li><strong>LinkedIn</strong> — The extension reads data from the LinkedIn page your browser has already loaded. No data is sent to LinkedIn by the extension. See <a href="https://www.linkedin.com/legal/privacy-policy" target="_blank" rel="noopener">LinkedIn's Privacy Policy</a>.</li>
+    </ul>
+
+    <h2>No Analytics or Tracking</h2>
+    <p>
+      LinkedIn Bookmark Exporter does not include any analytics, tracking pixels, telemetry, or usage reporting of any kind.
+      We do not track how you use the extension, how many posts you export, or any other behavioral data.
+    </p>
+
+    <h2>Data Deletion</h2>
+    <p>
+      To delete all data stored by the extension, simply uninstall it from Chrome
+      (<code>chrome://extensions</code> → Remove). This permanently and irreversibly deletes your license key
+      and all activation data from your device.
+    </p>
+
+    <h2>Children's Privacy</h2>
+    <p>
+      LinkedIn Bookmark Exporter is not directed at children under the age of 13 and does not knowingly collect
+      any personal information from children.
+    </p>
+
+    <h2>Changes to This Policy</h2>
+    <p>
+      If this privacy policy is updated, the changes will be reflected in the "Last updated" date
+      at the top of this page. Continued use of the extension after changes constitutes acceptance of the updated policy.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      If you have any questions about this privacy policy or the extension, please contact us at:<br>
+      <a href="mailto:support.grabkit@gmail.com">support.grabkit@gmail.com</a>
+    </p>
+
+    <div class="footer">
+      <p>LinkedIn Bookmark Exporter is an independent product by GrabKit. It is not affiliated with, endorsed by, or connected to LinkedIn Corporation.</p>
+    </div>
+  </div>
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ea55e16ab03a407780908ebd460c77ed"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>

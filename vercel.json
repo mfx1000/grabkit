@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "rewrites": [
+    { "source": "/linkedin-bookmark-exporter/privacy", "destination": "/linkedin-bookmark-exporter/privacy/index.html" },
+    { "source": "/linkedin-bookmark-exporter/success", "destination": "/linkedin-bookmark-exporter/success/index.html" }
+  ]
+}

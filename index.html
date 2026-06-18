@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrabKit — Chrome Extension Tools</title>
+  <meta name="description" content="GrabKit builds Chrome extensions that help you get more out of the tools you already use.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0F172A;
+      background: #F9FAFB;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+    }
+    .container {
+      text-align: center;
+      max-width: 520px;
+    }
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0a66c2;
+      margin-bottom: 8px;
+    }
+    .tagline {
+      font-size: 16px;
+      color: #64748B;
+      margin-bottom: 36px;
+    }
+    .extension-card {
+      background: #ffffff;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+      transition: box-shadow 0.2s ease;
+    }
+    .extension-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .extension-card h2 {
+      font-size: 17px;
+      font-weight: 600;
+      color: #0F172A;
+      margin-bottom: 6px;
+    }
+    .extension-card p {
+      font-size: 14px;
+      color: #64748B;
+      margin-bottom: 14px;
+    }
+    .extension-card a {
+      display: inline-block;
+      background: #0a66c2;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+    .extension-card a:hover {
+      background: #004182;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 13px;
+      color: #94A3B8;
+    }
+    footer a {
+      color: #64748B;
+      text-decoration: none;
+    }
+    footer a:hover { color: #0a66c2; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="logo">GrabKit</h1>
+    <p class="tagline">Chrome extensions that help you get more out of the tools you already use.</p>
+
+    <div class="extension-card">
+      <h2>LinkedIn Bookmark Exporter</h2>
+      <p>Export your LinkedIn saved posts to Markdown, CSV, or JSON in one click.</p>
+      <a href="linkedin-bookmark-exporter/">Learn more →</a>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 GrabKit · <a href="mailto:support.grabkit@gmail.com">support.grabkit@gmail.com</a></p>
+    </footer>
+  </div>
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ea55e16ab03a407780908ebd460c77ed"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>

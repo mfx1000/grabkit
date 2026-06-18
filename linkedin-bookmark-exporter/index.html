@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Bookmark Exporter — Export Your LinkedIn Saved Posts</title>
+  <meta name="description" content="Export all your LinkedIn saved posts to Markdown, CSV, or JSON in one click. Works with Notion, Obsidian, Excel, and more.">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0F172A;
+      background: #ffffff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Fade-in animation ── */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Hero (Above the Fold) ── */
+    .hero {
+      background: #F9FAFB;
+      text-align: center;
+      padding: 80px 24px 60px;
+    }
+
+    .hero > * {
+      animation: fadeInUp 0.4s ease both;
+    }
+
+    .hero > :nth-child(1) { animation-delay: 0s; }
+    .hero > :nth-child(2) { animation-delay: 0.05s; }
+    .hero > :nth-child(3) { animation-delay: 0.1s; }
+    .hero > :nth-child(4) { animation-delay: 0.15s; }
+    .hero > :nth-child(5) { animation-delay: 0.2s; }
+
+    .brand-badge {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #0a66c2;
+      background: rgba(10, 102, 194, 0.08);
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      letter-spacing: 0.2px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero .subline {
+      font-size: 18px;
+      font-weight: 400;
+      color: #64748B;
+      max-width: 520px;
+      margin: 0 auto 28px;
+      line-height: 1.5;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: #0a66c2;
+      color: #ffffff;
+      font-size: 17px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(10, 102, 194, 0.35);
+    }
+
+    .cta-btn:hover {
+      background: #004182;
+      box-shadow: 0 6px 20px rgba(10, 102, 194, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .cta-btn:active {
+      transform: translateY(0);
+    }
+
+    .trust-line {
+      font-size: 13px;
+      color: #94A3B8;
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── Features ── */
+    .features-section {
+      background: #F8FAFC;
+      padding: 60px 24px;
+    }
+
+    .features-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .features-section h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0F172A;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 24px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    .feature-item .check {
+      flex-shrink: 0;
+      color: #0EA5E9;
+      font-weight: 700;
+      font-size: 15px;
+      margin-top: 1px;
+    }
+
+    /* ── Preview ── */
+    .preview-section {
+      padding: 60px 24px 80px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .preview-section h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0F172A;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .code-preview {
+      background: #1E293B;
+      color: #E2E8F0;
+      padding: 24px 28px;
+      border-radius: 12px;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .preview-caption {
+      text-align: center;
+      font-size: 14px;
+      color: #94A3B8;
+      margin-top: 14px;
+    }
+
+    /* ── How It Works ── */
+    .how-section {
+      padding: 60px 24px 80px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .how-section h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0F172A;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 16px;
+      color: #334155;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: #0a66c2;
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    /* ── Second CTA ── */
+    .cta-repeat {
+      text-align: center;
+      padding: 48px 24px 60px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .cta-repeat .trust-line {
+      margin-top: 14px;
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      padding: 60px 24px 80px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .faq-section h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0F172A;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    details {
+      background: #ffffff;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      transition: box-shadow 0.2s ease;
+    }
+
+    details:hover {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    details[open] {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    summary {
+      padding: 16px 20px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #0F172A;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: '+';
+      font-size: 20px;
+      color: #94A3B8;
+      font-weight: 300;
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+      margin-left: 12px;
+    }
+
+    details[open] summary::after {
+      content: '\00d7';
+      font-size: 22px;
+    }
+
+    details p {
+      padding: 0 20px 16px;
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.6;
+    }
+
+    details p a {
+      color: #0a66c2;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    details p a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px 24px 48px;
+      border-top: 1px solid #E2E8F0;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: #94A3B8;
+    }
+
+    footer a {
+      color: #64748B;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #0a66c2;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .hero {
+        padding: 48px 32px 40px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .hero .subline {
+        font-size: 16px;
+      }
+
+      .cta-btn {
+        width: 100%;
+        text-align: center;
+        display: block;
+        padding: 16px 28px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .features-section {
+        padding: 48px 24px;
+      }
+
+      .preview-section {
+        padding: 48px 24px 60px;
+      }
+
+      .code-preview {
+        font-size: 11.5px;
+        padding: 16px 18px;
+      }
+
+      .how-section {
+        padding: 48px 24px 60px;
+      }
+
+      .faq-section {
+        padding: 48px 24px 60px;
+      }
+
+      .cta-repeat {
+        padding: 32px 24px 48px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ABOVE FOLD: hero zone -->
+  <section class="hero">
+    <p class="brand-badge">LinkedIn Bookmark Exporter</p>
+    <h1>Bulk Export Your Saved LinkedIn Posts</h1>
+    <p class="subline">Export every saved post's full text, author, and link to Markdown, CSV, or JSON — in one click.</p>
+    <a href="https://gumroad.com" class="cta-btn">Get License Key — $14.99 &rarr;</a>
+    <p class="trust-line">&#9993; License key emailed within seconds &nbsp;&middot;&nbsp; &#128683; No subscription &nbsp;&middot;&nbsp; &#128274; Works securely in your browser</p>
+  </section>
+
+  <!-- BELOW FOLD: features -->
+  <section class="features-section">
+    <div class="features-inner">
+      <h2>Everything you get</h2>
+      <div class="features-grid">
+        <div class="feature-item"><span class="check">&#10003;</span> Full post text — actual content, not links</div>
+        <div class="feature-item"><span class="check">&#10003;</span> Markdown export perfect for Notion, Obsidian etc.</div>
+        <div class="feature-item"><span class="check">&#10003;</span> CSV for Excel & Google Sheets</div>
+        <div class="feature-item"><span class="check">&#10003;</span> JSON for Airtable, Make.com & devs</div>
+        <div class="feature-item"><span class="check">&#10003;</span> Author names, URLs, dates & engagement</div>
+        <div class="feature-item"><span class="check">&#10003;</span> Hashtags and @mentions auto-extracted</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Markdown preview -->
+  <section class="preview-section">
+    <h2>What the Markdown export looks like</h2>
+    <pre class="code-preview">## 1. [Patrick Collison](https://linkedin.com/in/patrickcollison/)
+*Head of Product · Stripe*
+*2026-06-01 · &#10084;&#65039; 2,847 · &#128172; 94*
+
+The most underrated skill in product management isn't
+roadmapping. It's writing that changes minds...
+
+[View original post →](https://linkedin.com/posts/...)
+
+#productmanagement #writing #leadership
+
+---</pre>
+    <p class="preview-caption">Pastes into Notion, Obsidian, Bear, or any Markdown editor and renders perfectly.</p>
+  </section>
+
+  <!-- How it works -->
+  <section class="how-section">
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step"><span class="step-num">1</span> Install the Chrome extension</div>
+      <div class="step"><span class="step-num">2</span> Buy here — receive your license key by email</div>
+      <div class="step"><span class="step-num">3</span> Enter key in the extension, go to LinkedIn Saved Posts, click Export</div>
+    </div>
+  </section>
+
+  <!-- SECOND CTA -->
+  <section class="cta-repeat">
+    <a href="https://gumroad.com" class="cta-btn">Get License Key — $14.99 &rarr;</a>
+    <p class="trust-line">&#9993; License key emailed within seconds &nbsp;&middot;&nbsp; &#128683; No subscription</p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <h2>FAQ</h2>
+    <details>
+      <summary>Does it export the actual post content or just links?</summary>
+      <p>Full content — the complete text body of each post, plus author info, dates, and engagement counts. If a post is truncated with "...see more", the extension expands it before exporting.</p>
+    </details>
+    <details>
+      <summary>How do I get my license key?</summary>
+      <p>Instantly by email after purchase, from Polar (our payment processor). Check your spam folder if it doesn't arrive within 1 minute.</p>
+    </details>
+    <details>
+      <summary>Does it require me to log into LinkedIn through the extension?</summary>
+      <p>No. It reads your already-logged-in LinkedIn session. No passwords, no OAuth, no special permissions beyond the LinkedIn page itself. Think of it as reading the page the way you would — just automated.</p>
+    </details>
+    <details>
+      <summary>How many saved posts can it export?</summary>
+      <p>All of them. The extension auto-scrolls through your entire saved posts history before exporting. Hundreds of posts? No problem.</p>
+    </details>
+    <details>
+      <summary>Does it send my data anywhere?</summary>
+      <p>No. Everything happens locally in your browser. The exported file downloads directly to your computer. No servers involved. We can't see your posts even if we wanted to. Read our full <a href="privacy/">Privacy Policy</a>.</p>
+    </details>
+    <details>
+      <summary>What if LinkedIn changes their page structure?</summary>
+      <p>We push updates when this happens. Your one-time purchase includes all future updates. The extension uses multiple fallback selectors to be as resilient as possible to changes.</p>
+    </details>
+    <details>
+      <summary>Can I use it on multiple browsers or computers?</summary>
+      <p>Yes. Each license key can be activated on up to 3 Chrome profiles. If you need more, contact us at <a href="mailto:support.grabkit@gmail.com">support.grabkit@gmail.com</a>.</p>
+    </details>
+    <details>
+      <summary>What if I need help or have a question?</summary>
+      <p>Reach out to us at <a href="mailto:support.grabkit@gmail.com">support.grabkit@gmail.com</a> — we typically respond within 24 hours.</p>
+    </details>
+    <details>
+      <summary>What formats are supported?</summary>
+      <p>Markdown (.md) — perfect for Notion, Obsidian, Bear, Logseq. CSV (.csv) — opens in Excel, Google Sheets, Numbers. JSON (.json) — great for Airtable, Make.com, Zapier, or custom scripts.</p>
+    </details>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>LinkedIn Bookmark Exporter is not affiliated with LinkedIn &middot; <a href="privacy/">Privacy Policy</a> &middot; <a href="mailto:support.grabkit@gmail.com">support.grabkit@gmail.com</a></p>
+  </footer>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ea55e16ab03a407780908ebd460c77ed"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>
