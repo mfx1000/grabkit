@@ -122,7 +122,7 @@
     <ul>
       <li><strong>Your license key</strong> — to remember that you have purchased and activated the extension.</li>
       <li><strong>Activation status</strong> — whether your license is currently valid.</li>
-      <li><strong>Activation metadata</strong> — a timestamp of when you activated and an internal Polar activation ID (used for device slot management).</li>
+      <li><strong>Activation metadata</strong> — a timestamp of when you activated.</li>
     </ul>
     <p>
       This data is stored only on your device and is never transmitted to GrabKit or any third party. You can delete it at any time by uninstalling the extension.
@@ -133,13 +133,13 @@
       The only external network request made by the extension is:
     </p>
     <ul>
-      <li><strong>License key validation</strong> — When you enter a license key, the extension sends the key to Polar.sh's validation endpoint (<code>api.polar.sh</code>) to verify it is a valid, active license. This request contains only your license key and the developer's Polar organization ID. No personal data, LinkedIn data, or browsing history is included in this request.</li>
+      <li><strong>License key validation</strong> — When you enter a license key, the extension sends the key to Gumroad's validation endpoint (<code>api.gumroad.com</code>) to verify it is a valid license. This request contains only your license key and the product ID. No personal data, LinkedIn data, or browsing history is included in this request.</li>
     </ul>
 
     <h2>Third-Party Services</h2>
     <p>The extension interacts with the following third-party services:</p>
     <ul>
-      <li><strong>Polar.sh</strong> — Used solely for license key validation and activation. Polar.sh acts as our payment processor and license key distributor. See <a href="https://polar.sh/legal/privacy-policy" target="_blank" rel="noopener">Polar.sh's Privacy Policy</a>.</li>
+      <li><strong>Gumroad</strong> — Used solely for payment processing and license key distribution. See <a href="https://gumroad.com/legal/privacy" target="_blank" rel="noopener">Gumroad's Privacy Policy</a>.</li>
       <li><strong>LinkedIn</strong> — The extension reads data from the LinkedIn page your browser has already loaded. No data is sent to LinkedIn by the extension. See <a href="https://www.linkedin.com/legal/privacy-policy" target="_blank" rel="noopener">LinkedIn's Privacy Policy</a>.</li>
     </ul>
 
