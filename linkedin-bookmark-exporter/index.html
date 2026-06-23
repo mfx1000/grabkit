@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LinkedIn Bookmark Exporter — Export Your LinkedIn Saved Posts</title>
+  <title>LinkedIn Bookmark Exporter - Export Your LinkedIn Saved Posts</title>
   <meta name="description" content="Export all your LinkedIn saved posts to Markdown, CSV, or JSON in one click. Works with Notion, Obsidian, Excel, and more.">
   <style>
     *, *::before, *::after {
@@ -100,6 +100,48 @@
 
     .cta-btn:active {
       transform: translateY(0);
+    }
+
+    .cta-btn-secondary {
+      display: inline-block;
+      background: #ffffff;
+      color: #0a66c2;
+      font-size: 17px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 1px solid #CBD5E1;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .cta-btn-secondary:hover {
+      background: #F8FAFC;
+      border-color: #0a66c2;
+      color: #004182;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+      transform: translateY(-1px);
+    }
+
+    .cta-btn-secondary:active {
+      transform: translateY(0);
+    }
+
+    .cta-btn .chrome-icon {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      vertical-align: -3px;
+      margin-right: 6px;
+    }
+
+    .cta-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
     .trust-line {
@@ -358,7 +400,12 @@
         font-size: 16px;
       }
 
-      .cta-btn {
+      .cta-group {
+        flex-direction: column;
+      }
+
+      .cta-btn,
+      .cta-btn-secondary {
         width: 100%;
         text-align: center;
         display: block;
@@ -404,7 +451,10 @@
     <p class="brand-badge">LinkedIn Bookmark Exporter</p>
     <h1>Bulk Export Your Saved LinkedIn Posts</h1>
     <p class="subline">Export every saved post's full text, author, and link to Markdown, CSV, or JSON — in one click.</p>
-    <a href="https://grabkit.gumroad.com/l/linkedin-bookmark-exporter" class="cta-btn">Get License Key — $14.99 &rarr;</a>
+    <div class="cta-group">
+      <a href="https://chromewebstore.google.com/detail/pbakljhafodiiknepoofblioaalgepek?utm_source=item-share-cb" class="cta-btn" target="_blank" rel="noopener"><svg class="chrome-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M13.6 18L6.7 14A20 20 0 0 1 41.3 14L34.4 18A12 12 0 0 0 13.6 18Z"/><path fill="#34A853" d="M34.4 18L41.3 14A20 20 0 0 1 24 44L24 36A12 12 0 0 0 34.4 18Z"/><path fill="#FBBC05" d="M24 36L24 44A20 20 0 0 1 6.7 14L13.6 18A12 12 0 0 0 24 36Z"/><circle cx="24" cy="24" r="12" fill="#fff"/><circle cx="24" cy="24" r="8" fill="#4285F4"/></svg>Get Chrome Extension</a>
+      <a href="https://grabkit.gumroad.com/l/linkedin-bookmark-exporter" class="cta-btn-secondary">Get License Key - $14.99 &rarr;</a>
+    </div>
     <p class="trust-line">&#9993; License key emailed within seconds &nbsp;&middot;&nbsp; &#128683; No subscription &nbsp;&middot;&nbsp; &#128274; Works securely in your browser</p>
   </section>
 
@@ -455,7 +505,10 @@ roadmapping. It's writing that changes minds...
 
   <!-- SECOND CTA -->
   <section class="cta-repeat">
-    <a href="https://grabkit.gumroad.com/l/linkedin-bookmark-exporter" class="cta-btn">Get License Key — $14.99 &rarr;</a>
+    <div class="cta-group">
+      <a href="https://chromewebstore.google.com/detail/pbakljhafodiiknepoofblioaalgepek?utm_source=item-share-cb" class="cta-btn" target="_blank" rel="noopener"><svg class="chrome-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M13.6 18L6.7 14A20 20 0 0 1 41.3 14L34.4 18A12 12 0 0 0 13.6 18Z"/><path fill="#34A853" d="M34.4 18L41.3 14A20 20 0 0 1 24 44L24 36A12 12 0 0 0 34.4 18Z"/><path fill="#FBBC05" d="M24 36L24 44A20 20 0 0 1 6.7 14L13.6 18A12 12 0 0 0 24 36Z"/><circle cx="24" cy="24" r="12" fill="#fff"/><circle cx="24" cy="24" r="8" fill="#4285F4"/></svg>Get Chrome Extension</a>
+      <a href="https://grabkit.gumroad.com/l/linkedin-bookmark-exporter" class="cta-btn-secondary">Get License Key - $14.99 &rarr;</a>
+    </div>
     <p class="trust-line">&#9993; License key emailed within seconds &nbsp;&middot;&nbsp; &#128683; No subscription</p>
   </section>
 
