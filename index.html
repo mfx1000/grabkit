@@ -1,103 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GrabKit - Chrome Extension Tools</title>
-  <meta name="description" content="GrabKit builds Chrome extensions that help you get more out of the tools you already use.">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      color: #0F172A;
-      background: #F9FAFB;
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 24px;
-    }
-    .container {
-      text-align: center;
-      max-width: 520px;
-    }
-    .logo {
-      font-size: 28px;
-      font-weight: 700;
-      color: #0a66c2;
-      margin-bottom: 8px;
-    }
-    .tagline {
-      font-size: 16px;
-      color: #64748B;
-      margin-bottom: 36px;
-    }
-    .extension-card {
-      background: #ffffff;
-      border: 1px solid #E2E8F0;
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 16px;
-      transition: box-shadow 0.2s ease;
-    }
-    .extension-card:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    }
-    .extension-card h2 {
-      font-size: 17px;
-      font-weight: 600;
-      color: #0F172A;
-      margin-bottom: 6px;
-    }
-    .extension-card p {
-      font-size: 14px;
-      color: #64748B;
-      margin-bottom: 14px;
-    }
-    .extension-card a {
-      display: inline-block;
-      background: #0a66c2;
-      color: #ffffff;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 8px 18px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: background 0.15s ease;
-    }
-    .extension-card a:hover {
-      background: #004182;
-    }
-    footer {
-      margin-top: 40px;
-      font-size: 13px;
-      color: #94A3B8;
-    }
-    footer a {
-      color: #64748B;
-      text-decoration: none;
-    }
-    footer a:hover { color: #0a66c2; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1 class="logo">GrabKit</h1>
-    <p class="tagline">Chrome extensions that help you get more out of the tools you already use.</p>
-
-    <div class="extension-card">
-      <h2>LinkedIn Bookmark Exporter</h2>
-      <p>Export your LinkedIn saved posts to Markdown, CSV, or JSON in one click.</p>
-      <a href="linkedin-bookmark-exporter/">Learn more →</a>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="GrabKit creates focused Chrome extensions for the work you do online.">
+    <title>GrabKit - Chrome extensions for focused work</title>
+    <style>
+      :root { --ink: #14151a; --muted: #6c6d77; --paper: #fbfaf8; --line: #e5e3df; --violet: #6c47ff; --blue: #0a66c2; }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+      a { color: inherit; text-decoration: none; }
+      .shell { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+      nav { align-items: center; display: flex; height: 90px; justify-content: space-between; }
+      .wordmark { font-size: 25px; font-weight: 750; letter-spacing: -1.1px; }
+      .wordmark i { color: var(--violet); font-style: normal; }
+      .nav-link { color: var(--muted); font-size: 14px; font-weight: 600; }
+      .hero { max-width: 780px; padding: 78px 0 86px; }
+      .eyebrow { color: var(--violet); font-size: 12px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+      h1 { font-size: clamp(43px, 6vw, 72px); letter-spacing: -.065em; line-height: .98; margin: 19px 0 22px; max-width: 720px; }
+      .hero p { color: var(--muted); font-size: 19px; line-height: 1.55; max-width: 620px; }
+      .catalog { border-top: 1px solid var(--line); padding: 37px 0 96px; }
+      .catalog-head { align-items: baseline; display: flex; justify-content: space-between; margin-bottom: 20px; }
+      h2 { font-size: 15px; letter-spacing: -.02em; margin: 0; }
+      .catalog-head span { color: var(--muted); font-size: 13px; }
+      .products { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .product { background: #fff; border: 1px solid var(--line); border-radius: 18px; min-height: 305px; overflow: hidden; padding: 29px; position: relative; transition: transform .22s, box-shadow .22s; }
+      .product:hover { box-shadow: 0 16px 40px rgba(25, 22, 18, .08); transform: translateY(-4px); }
+      .mark { align-items: center; border-radius: 12px; display: flex; font-weight: 800; height: 46px; justify-content: center; margin-bottom: 46px; overflow: hidden; width: 46px; }
+      .linkedin .mark { background: var(--blue); color: #fff; }
+      .heygen .mark { background: #fff; box-shadow: 0 7px 16px rgba(108, 71, 255, .20); }
+      .heygen .mark img { display: block; height: 100%; object-fit: cover; width: 100%; }
+      .product h3 { font-size: 23px; letter-spacing: -.045em; margin: 0 0 8px; }
+      .product p { color: var(--muted); font-size: 15px; line-height: 1.55; margin: 0; max-width: 365px; }
+      .open { bottom: 27px; color: var(--ink); font-size: 14px; font-weight: 700; position: absolute; }
+      .open b { color: var(--violet); font-size: 18px; margin-left: 6px; }
+      .linkedin .open b { color: var(--blue); }
+      footer { border-top: 1px solid var(--line); color: var(--muted); display: flex; font-size: 13px; justify-content: space-between; padding: 28px 0 38px; }
+      footer a:hover { color: var(--violet); }
+      @media (max-width: 640px) { .shell { padding: 0 20px; } nav { height: 76px; } .hero { padding: 54px 0 58px; } .hero p { font-size: 17px; } .products { grid-template-columns: 1fr; } .product { min-height: 275px; } footer { display: block; line-height: 2; } }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <nav>
+        <a class="wordmark" href="/" aria-label="GrabKit home">Grab<i>Kit</i></a>
+        <a class="nav-link" href="mailto:support.grabkit@gmail.com">Contact</a>
+      </nav>
+      <main>
+        <section class="hero">
+          <span class="eyebrow">Purpose-built Chrome extensions</span>
+          <h1>Chrome extensions that make browser work easier.</h1>
+          <p>GrabKit builds focused Chrome extensions that help you export, organize, and get more done in the tools you already use.</p>
+        </section>
+        <section class="catalog" aria-labelledby="extensions-heading">
+          <div class="catalog-head">
+            <h2 id="extensions-heading">Chrome extensions</h2>
+            <span>Install the extension that fits your workflow</span>
+          </div>
+          <div class="products">
+            <a class="product linkedin" href="/linkedin-bookmark-exporter/">
+              <div class="mark" aria-hidden="true">in</div>
+              <h3>LinkedIn Bookmark Exporter</h3>
+              <p>A Chrome extension that exports your LinkedIn saved posts to Markdown, CSV, or JSON in one click.</p>
+              <span class="open">View extension <b>→</b></span>
+            </a>
+            <a class="product heygen" href="/heygen-bulk-downloader/">
+              <div class="mark" aria-hidden="true"><img src="heygen_chrome_extension_icon.png" alt=""></div>
+              <h3>HeyGen Bulk Downloader</h3>
+              <p>A Chrome extension that downloads completed HeyGen videos and library metadata without repetitive clicking.</p>
+              <span class="open">View extension <b>→</b></span>
+            </a>
+          </div>
+        </section>
+      </main>
+      <footer><span>© 2026 GrabKit</span><a href="mailto:support.grabkit@gmail.com">support.grabkit@gmail.com</a></footer>
     </div>
-
-    <footer>
-      <p>&copy; 2026 GrabKit · <a href="mailto:support.grabkit@gmail.com">support.grabkit@gmail.com</a></p>
-    </footer>
-  </div>
-  <!-- Cloudflare Web Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ea55e16ab03a407780908ebd460c77ed"}'></script>
-  <!-- End Cloudflare Web Analytics -->
-</body>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"ea55e16ab03a407780908ebd460c77ed"}'></script>
+  </body>
 </html>

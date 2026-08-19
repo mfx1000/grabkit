@@ -2,7 +2,10 @@
   "cleanUrls": true,
   "trailingSlash": true,
   "rewrites": [
+    { "source": "/linkedin-bookmark-exporter", "destination": "/linkedin-bookmark-exporter/index.html" },
     { "source": "/linkedin-bookmark-exporter/privacy", "destination": "/linkedin-bookmark-exporter/privacy/index.html" },
-    { "source": "/linkedin-bookmark-exporter/success", "destination": "/linkedin-bookmark-exporter/success/index.html" }
+    { "source": "/linkedin-bookmark-exporter/success", "destination": "/linkedin-bookmark-exporter/success/index.html" },
+    { "source": "/heygen-bulk-downloader/privacy", "destination": "/heygen-bulk-downloader/privacy/index.html" },
+    { "source": "/heygen-bulk-downloader", "destination": "/heygen-bulk-downloader/index.html" }
   ]
 }

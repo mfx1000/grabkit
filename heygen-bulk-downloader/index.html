@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HeyGen Bulk Downloader - Download Your Entire Video Library in One Click</title>
+    <meta name="description" content="Stop downloading HeyGen videos one by one. Connect your account and download your entire video library automatically, organized into a folder.">
+    <meta property="og:title" content="HeyGen Bulk Downloader">
+    <meta property="og:description" content="Download your entire HeyGen video library in one click.">
+    <meta property="og:image" content="assets/og-image.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <style>
+      :root {
+        --background: #0f0f11;
+        --surface: #19191d;
+        --surface-raised: #202024;
+        --line: #2e2e35;
+        --text: #f4f3f6;
+        --muted: #aaa8b3;
+        --subtle: #74727d;
+        --brand: #6c47ff;
+        --brand-light: #8b70ff;
+        --green: #4ade80;
+      }
+
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        background: var(--background);
+        color: var(--text);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a { color: inherit; text-decoration: none; }
+
+      .shell { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+      .site-nav {
+        align-items: center;
+        display: flex;
+        height: 82px;
+        justify-content: space-between;
+      }
+
+      .product-name { align-items: center; display: inline-flex; font-size: 17px; font-weight: 750; gap: 9px; letter-spacing: -.45px; }
+      .product-name span { color: var(--brand); }
+      .product-name .product-name-primary { color: var(--text); margin-right: -5px; }
+      .product-logo { border-radius: 7px; display: block; height: 34px; width: 34px; }
+      .back-link { color: var(--muted); font-size: 14px; font-weight: 600; }
+      .back-link:hover { color: var(--text); }
+
+      .hero {
+        align-items: center;
+        display: grid;
+        gap: 68px;
+        grid-template-columns: 1.03fr .97fr;
+        min-height: 626px;
+        padding: 56px 0 66px;
+      }
+
+      .eyebrow {
+        color: var(--brand-light);
+        font-size: 12px;
+        font-weight: 750;
+        letter-spacing: .13em;
+        text-transform: uppercase;
+      }
+
+      h1, h2, h3, p { margin-top: 0; }
+
+      h1 {
+        font-size: clamp(44px, 5.6vw, 70px);
+        letter-spacing: -.065em;
+        line-height: .98;
+        margin-bottom: 22px;
+        margin-top: 19px;
+      }
+
+      .hero-copy {
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.57;
+        margin-bottom: 30px;
+        max-width: 510px;
+      }
+
+      .cta-group { display: flex; flex-wrap: wrap; gap: 18px; }
+
+      .button {
+        align-items: center;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        display: inline-flex;
+        font-size: 15px;
+        font-weight: 700;
+        gap: 9px;
+        justify-content: center;
+        min-height: 49px;
+        padding: 13px 18px;
+        transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+      }
+
+      .button:hover { transform: scale(1.02); }
+
+      .hero .button { min-width: 224px; padding-left: 28px; padding-right: 28px; }
+
+      .button-primary {
+        background: linear-gradient(135deg, var(--brand), #805bff);
+        box-shadow: 0 10px 28px rgba(108, 71, 255, .30);
+      }
+
+      .button-primary:hover { box-shadow: 0 13px 32px rgba(108, 71, 255, .42); }
+      .button-secondary { border-color: var(--brand-light); color: #cabeff; }
+      .button-secondary:hover { background: rgba(108, 71, 255, .10); }
+
+      .chrome-icon { height: 18px; width: 18px; }
+
+      .trust-copy {
+        color: var(--subtle);
+        font-size: 12px;
+        line-height: 1.6;
+        margin-bottom: 0;
+        margin-top: 15px;
+      }
+
+      .trust-copy span { color: var(--green); font-weight: 800; }
+
+      .product-preview {
+        background: linear-gradient(145deg, #1d1d21, #151518);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: 0 28px 60px rgba(0, 0, 0, .30);
+        padding: 16px;
+      }
+
+      /* Animated product simulation: an original, simplified representation of this extension. */
+      .extension-simulation { background: #17171a; border-radius: 18px; overflow: hidden; padding: 0; }
+      .sim-topbar { align-items: center; background: #202024; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; padding: 15px 18px; }
+      .sim-identity { align-items: center; display: flex; gap: 10px; }
+      .sim-logo { border-radius: 7px; display: block; height: 30px; width: 30px; }
+      .sim-name { font-size: 13px; font-weight: 750; letter-spacing: -.2px; }
+      .sim-connection { align-items: center; background: rgba(74, 222, 128, .09); border: 1px solid rgba(74, 222, 128, .16); border-radius: 99px; color: var(--green); display: flex; font-size: 10px; font-weight: 700; gap: 6px; padding: 5px 8px; }
+      .sim-connection::before { background: var(--green); border-radius: 50%; content: ""; height: 6px; width: 6px; }
+      .sim-body { padding: 18px; }
+      .sim-stat { background: linear-gradient(135deg, #25232d, #1b1a20); border: 1px solid #393642; border-radius: 11px; padding: 17px; }
+      .sim-stat-label { color: #a9a4b8; font-size: 11px; font-weight: 650; }
+      .sim-stat-row { align-items: flex-end; display: flex; justify-content: space-between; margin-top: 5px; }
+      .sim-stat-number { align-items: baseline; display: flex; font-size: 34px; font-weight: 760; gap: 7px; letter-spacing: -.06em; line-height: 1; }
+      .sim-stat-number span { color: var(--muted); font-size: 11px; font-weight: 500; letter-spacing: 0; }
+      .sim-export-badge { color: #d1c9ff; font-size: 10px; font-weight: 700; }
+      .sim-progress { background: #36323f; border-radius: 10px; height: 6px; margin-top: 14px; overflow: hidden; }
+      .sim-progress::after { animation: progress 8s ease-in-out infinite; background: linear-gradient(90deg, var(--brand), #b2a3ff); border-radius: inherit; content: ""; display: block; height: 100%; width: 0; }
+      .sim-download-header { align-items: center; display: flex; justify-content: space-between; margin: 20px 1px 10px; }
+      .sim-download-header strong { font-size: 13px; letter-spacing: -.15px; }
+      .sim-download-header span { color: var(--brand-light); font-size: 11px; font-weight: 700; }
+      .sim-video-list { display: grid; gap: 8px; }
+      .sim-video { align-items: center; background: #1e1e22; border: 1px solid #2d2d34; border-radius: 9px; display: grid; gap: 10px; grid-template-columns: 38px 1fr auto; padding: 8px; }
+      .sim-video:nth-child(1) { animation: row-active 8s ease-in-out infinite; }
+      .sim-video:nth-child(2) { animation: row-active 8s ease-in-out 1.8s infinite; }
+      .sim-video:nth-child(3) { animation: row-active 8s ease-in-out 3.6s infinite; }
+      .sim-thumb { background: linear-gradient(135deg, #a68dff, #41376b); border-radius: 5px; height: 29px; overflow: hidden; position: relative; }
+      .sim-thumb::after { border-color: transparent transparent transparent rgba(255,255,255,.85); border-style: solid; border-width: 5px 0 5px 8px; content: ""; left: 16px; position: absolute; top: 10px; }
+      .sim-video-name { color: #e1dfe6; display: block; font-size: 11px; font-weight: 680; }
+      .sim-video-meta { color: var(--subtle); display: block; font-size: 9px; margin-top: 3px; }
+      .sim-status { color: var(--subtle); font-size: 10px; font-weight: 700; }
+      .sim-status.done { color: var(--green); }
+      .sim-action { animation: action-pulse 8s ease-in-out infinite; background: linear-gradient(135deg, var(--brand), #805bff); border-radius: 8px; font-size: 12px; font-weight: 750; margin-top: 17px; padding: 13px; text-align: center; }
+      .sim-footer { color: var(--subtle); font-size: 10px; padding: 0 18px 17px; text-align: center; }
+      @keyframes progress { 0%, 12% { width: 0; } 55%, 82% { width: 100%; } 100% { width: 0; } }
+      @keyframes row-active { 0%, 17% { background: #1e1e22; border-color: #2d2d34; } 25%, 48% { background: rgba(108, 71, 255, .12); border-color: rgba(139, 112, 255, .48); } 55%, 100% { background: #1e1e22; border-color: #2d2d34; } }
+      @keyframes action-pulse { 0%, 10%, 90%, 100% { transform: scale(1); } 18%, 28% { transform: scale(1.018); } }
+
+      /* One-click download flow simulation. */
+      .extension-simulation { background: #19191d; border-radius: 18px; }
+      .sim-topbar { padding: 16px 18px; }
+      .sim-logo { display: none; }
+      .sim-flow { align-items: stretch; display: grid; gap: 14px; grid-template-columns: 1fr 42px 1fr; padding: 20px 18px 17px; }
+      .flow-panel { background: #151519; border: 1px solid #303039; border-radius: 12px; min-height: 190px; padding: 16px; position: relative; }
+      .flow-panel-label { color: var(--muted); font-size: 11px; font-weight: 650; }
+      .flow-count { font-size: 34px; font-weight: 760; letter-spacing: -.06em; line-height: 1; margin-top: 11px; }
+      .flow-count span { color: var(--muted); font-size: 11px; font-weight: 500; letter-spacing: 0; }
+      .flow-subtext { color: var(--subtle); font-size: 10px; margin-top: 5px; }
+      .video-stack { bottom: 16px; height: 54px; left: 16px; position: absolute; right: 16px; }
+      .video-card { background: linear-gradient(135deg, #7a63d3, #4d3d87); border: 1px solid rgba(203, 193, 255, .45); border-radius: 7px; height: 35px; position: absolute; width: 72%; }
+      .video-card::after { border-color: transparent transparent transparent rgba(255,255,255,.9); border-style: solid; border-width: 5px 0 5px 8px; content: ""; left: 14px; position: absolute; top: 11px; }
+      .video-card:nth-child(1) { opacity: .42; right: 0; top: 0; transform: rotate(5deg); }
+      .video-card:nth-child(2) { opacity: .72; right: 10px; top: 9px; transform: rotate(2deg); }
+      .video-card:nth-child(3) { animation: card-lift 6s ease-in-out infinite; left: 0; top: 18px; }
+      .flow-connector { align-items: center; display: flex; justify-content: center; position: relative; }
+      .flow-connector::before { background: #3d394c; content: ""; height: 2px; width: 100%; }
+      .flow-connector::after { animation: transfer-dot 2.1s ease-in-out infinite; background: var(--brand-light); border-radius: 50%; box-shadow: 0 0 0 5px rgba(108, 71, 255, .13); content: ""; height: 8px; left: -4px; position: absolute; width: 8px; }
+      .download-folder { align-items: center; background: linear-gradient(145deg, #32286a, #201a42); border: 1px solid #6857a3; border-radius: 8px; bottom: 22px; display: flex; height: 52px; justify-content: center; left: 16px; position: absolute; right: 16px; }
+      .download-folder::before { background: #a696ff; border-radius: 5px 5px 0 0; content: ""; height: 9px; left: 14px; position: absolute; top: -6px; width: 36px; }
+      .folder-label { color: #edeaff; font-size: 11px; font-weight: 700; }
+      .flow-progress { background: #302d38; border-radius: 99px; height: 5px; margin: 0 18px; overflow: hidden; }
+      .flow-progress::after { animation: flow-progress 6s ease-in-out infinite; background: linear-gradient(90deg, var(--brand), #b2a3ff); border-radius: inherit; content: ""; display: block; height: 100%; width: 0; }
+      .flow-status { color: var(--muted); display: flex; font-size: 10px; justify-content: space-between; padding: 11px 18px 17px; }
+      .flow-status strong { color: var(--text); font-weight: 650; }
+      @keyframes transfer-dot { 0% { left: -4px; opacity: 0; } 15% { opacity: 1; } 80% { opacity: 1; } 100% { left: calc(100% - 4px); opacity: 0; } }
+      @keyframes card-lift { 0%, 16%, 100% { transform: translate(0, 0) rotate(0); } 42%, 68% { transform: translate(50px, -8px) rotate(4deg); } }
+      @keyframes flow-progress { 0%, 12% { width: 8%; } 70%, 85% { width: 100%; } 100% { width: 8%; } }
+
+      /* Extension activity simulation: mirrors the downloader's actual workflow. */
+      .extension-simulation { background: #18181b; }
+      .sim-topbar { background: #202024; padding: 16px 18px; }
+      .sim-activity { padding: 18px; }
+      .activity-library { background: linear-gradient(135deg, #201e29, #1a1a1e); border: 1px solid #383447; border-radius: 11px; padding: 15px; }
+      .activity-library-label { color: #b9b4c8; font-size: 11px; font-weight: 650; }
+      .activity-library-number { align-items: baseline; display: flex; gap: 8px; margin-top: 7px; }
+      .activity-library-number strong { font-size: 34px; letter-spacing: -.06em; line-height: 1; }
+      .activity-library-number span { color: var(--muted); font-size: 11px; }
+      .activity-job { align-items: center; display: flex; justify-content: space-between; margin: 20px 1px 10px; }
+      .activity-job strong { font-size: 13px; letter-spacing: -.15px; }
+      .activity-job span { color: var(--brand-light); font-size: 11px; font-weight: 700; }
+      .activity-track { background: #34313c; border-radius: 99px; height: 6px; margin-bottom: 12px; overflow: hidden; }
+      .activity-track::after { animation: activity-progress 7s ease-in-out infinite; background: linear-gradient(90deg, var(--brand), #ad9dff); border-radius: inherit; content: ""; display: block; height: 100%; width: 14%; }
+      .activity-list { display: grid; gap: 7px; }
+      .activity-row { align-items: center; background: #202024; border: 1px solid #2d2d34; border-radius: 8px; display: grid; gap: 11px; grid-template-columns: 32px 1fr auto; padding: 8px; }
+      .activity-row:nth-child(2) { animation: active-row 7s ease-in-out infinite; }
+      .activity-thumb { background: linear-gradient(145deg, #8977df, #58448d); border-radius: 5px; height: 30px; position: relative; }
+      .activity-thumb::after { border-color: transparent transparent transparent white; border-style: solid; border-width: 5px 0 5px 8px; content: ""; left: 13px; opacity: .92; position: absolute; top: 10px; }
+      .activity-title { color: #e5e3e8; display: block; font-size: 11px; font-weight: 700; }
+      .activity-meta { color: var(--subtle); display: block; font-size: 9px; margin-top: 3px; }
+      .activity-status { align-items: center; color: var(--subtle); display: flex; font-size: 10px; font-weight: 650; gap: 5px; }
+      .activity-status::before { background: currentColor; border-radius: 50%; content: ""; height: 5px; width: 5px; }
+      .activity-status.done { color: var(--green); }
+      .activity-status.loading { color: #baaaff; }
+      .activity-status.loading::before { animation: status-pulse 1s ease-in-out infinite; }
+      .activity-footer { color: var(--subtle); font-size: 10px; padding: 0 18px 17px; text-align: center; }
+      @keyframes activity-progress { 0%, 10% { width: 14%; } 68%, 85% { width: 76%; } 100% { width: 14%; } }
+      @keyframes active-row { 0%, 12%, 88%, 100% { background: #202024; border-color: #2d2d34; } 25%, 72% { background: rgba(108, 71, 255, .11); border-color: rgba(139, 112, 255, .45); } }
+      @keyframes status-pulse { 50% { opacity: .35; } }
+
+      .section { border-top: 1px solid var(--line); padding: 82px 0; }
+      .section-heading { margin: 0 auto 42px; max-width: 670px; text-align: center; }
+      .section-heading .eyebrow { display: block; margin-bottom: 14px; }
+
+      h2 {
+        font-size: clamp(31px, 3.5vw, 42px);
+        letter-spacing: -.055em;
+        line-height: 1.06;
+        margin-bottom: 0;
+      }
+
+      .section-intro { color: var(--muted); font-size: 16px; line-height: 1.55; margin: 14px auto 0; max-width: 560px; }
+      .steps { display: grid; gap: 36px; grid-template-columns: repeat(3, 1fr); }
+      .step-number { color: var(--brand); display: block; font-size: 13px; font-weight: 800; margin-bottom: 18px; }
+      .step h3 { font-size: 18px; letter-spacing: -.02em; margin-bottom: 8px; }
+      .step p { color: var(--muted); font-size: 14px; line-height: 1.58; margin-bottom: 0; }
+
+      .demo-section { background: #121216; }
+
+      .demo-frame {
+        background: #19191d;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        margin: 0 auto;
+        max-width: 840px;
+        overflow: hidden;
+      }
+
+      .demo-placeholder {
+        align-items: center;
+        background: radial-gradient(circle at 50% 10%, rgba(108, 71, 255, .20), transparent 38%), #151519;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 370px;
+        padding: 34px;
+        text-align: center;
+      }
+
+      .demo-play {
+        align-items: center;
+        background: var(--brand);
+        border-radius: 50%;
+        box-shadow: 0 0 0 9px rgba(108, 71, 255, .13);
+        display: flex;
+        font-size: 18px;
+        height: 54px;
+        justify-content: center;
+        margin-bottom: 19px;
+        padding-left: 3px;
+        width: 54px;
+      }
+
+      .demo-placeholder strong { font-size: 18px; letter-spacing: -.02em; }
+      .demo-placeholder p { color: var(--muted); font-size: 14px; margin: 8px 0 0; }
+      .demo-caption { color: var(--subtle); font-size: 13px; margin: 13px 0 0; text-align: center; }
+
+      .feature-grid { display: grid; gap: 13px; grid-template-columns: repeat(4, 1fr); }
+
+      .feature-card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        min-height: 190px;
+        padding: 23px;
+      }
+
+      .feature-icon { color: #c0b4ff; font-size: 20px; line-height: 1; margin-bottom: 23px; }
+      .feature-card h3 { font-size: 16px; letter-spacing: -.02em; margin-bottom: 8px; }
+      .feature-card p { color: var(--muted); font-size: 13px; line-height: 1.55; margin-bottom: 0; }
+
+      .pricing-section { background: #121216; }
+
+      .pricing-card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: 0 20px 48px rgba(0, 0, 0, .22);
+        margin: 0 auto;
+        max-width: 430px;
+        overflow: hidden;
+      }
+
+      .pricing-accent { background: linear-gradient(90deg, var(--brand), #9d84ff); height: 4px; }
+      .pricing-content { padding: 32px; }
+      .pricing-label { color: #c0b4ff; font-size: 12px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+      .price { font-size: 58px; font-weight: 760; letter-spacing: -.065em; line-height: 1; margin: 14px 0 8px; }
+      .pricing-subtext { color: var(--muted); font-size: 15px; margin-bottom: 28px; }
+
+      .checklist { border-top: 1px solid var(--line); list-style: none; margin: 0 0 27px; padding: 22px 0 0; }
+      .checklist li { color: #d3d1d8; font-size: 14px; margin-bottom: 13px; }
+      .checklist span { color: var(--green); font-weight: 800; margin-right: 9px; }
+      .pricing-card .button { width: 100%; }
+      .secure-text { color: var(--subtle); font-size: 11px; margin: 12px 0 0; text-align: center; }
+
+      .faq-list { margin: 0 auto; max-width: 760px; }
+
+      .faq-item {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        margin-bottom: 10px;
+      }
+
+      .faq-trigger {
+        align-items: center;
+        background: none;
+        border: 0;
+        color: var(--text);
+        cursor: pointer;
+        display: flex;
+        font: inherit;
+        font-size: 15px;
+        font-weight: 650;
+        justify-content: space-between;
+        padding: 18px 20px;
+        text-align: left;
+        width: 100%;
+      }
+
+      .faq-trigger::after { color: var(--brand-light); content: "+"; font-size: 23px; font-weight: 400; line-height: .7; margin-left: 20px; }
+      .faq-trigger[aria-expanded="true"]::after { content: "−"; }
+      .faq-answer { color: var(--muted); display: none; font-size: 14px; line-height: 1.62; padding: 0 20px 19px; }
+      .faq-answer.is-open { display: block; }
+
+      footer {
+        border-top: 1px solid var(--line);
+        color: var(--subtle);
+        display: flex;
+        font-size: 13px;
+        justify-content: space-between;
+        padding: 28px 0 38px;
+      }
+
+      footer a:hover { color: var(--text); }
+
+      @media (min-width: 768px) and (max-width: 1023px) {
+        .hero { gap: 36px; }
+        .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+
+      @media (max-width: 767px) {
+        .shell { padding: 0 20px; }
+        .site-nav { height: 70px; }
+        .hero { display: block; min-height: auto; padding: 52px 0 58px; }
+        .hero-copy { font-size: 17px; }
+        .product-preview { margin-top: 44px; }
+        .cta-group { display: grid; grid-template-columns: 1fr; }
+        .cta-group .button { width: 100%; }
+        .section { padding: 58px 0; }
+        .section-heading { margin-bottom: 30px; }
+        .steps, .feature-grid { grid-template-columns: 1fr; }
+        .steps { gap: 28px; }
+        .feature-card { min-height: 0; }
+        .feature-icon { margin-bottom: 14px; }
+        .demo-placeholder { min-height: 270px; }
+        .pricing-content { padding: 26px; }
+        footer { display: block; line-height: 2; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <nav class="site-nav">
+        <a class="product-name" href="/heygen-bulk-downloader/" aria-label="HeyGen Bulk Downloader home">
+          <img class="product-logo" src="../heygen_chrome_extension_icon.png" alt="">
+          <span class="product-name-primary">HeyGen</span>
+          <span>Bulk Downloader</span>
+        </a>
+        <a class="back-link" href="mailto:support.grabkit@gmail.com">Support</a>
+      </nav>
+
+      <main id="top">
+        <section class="hero">
+          <div>
+            <p class="eyebrow">A Chrome extension for HeyGen</p>
+            <h1>Download your entire HeyGen library in one click.</h1>
+            <p class="hero-copy">Stop downloading videos one by one. Connect your HeyGen account, download every completed video at once, and keep a clean CSV of your library metadata.</p>
+            <div class="cta-group">
+              <!-- Gumroad license checkout URL: primary conversion CTA -->
+              <a class="button button-primary" href="https://grabkit.gumroad.com/l/heygen-bulk-downloader" target="_blank" rel="noopener">Get License Key</a>
+              <!-- TODO: paste Chrome Web Store URL -->
+              <a class="button button-secondary" href="#CHROME_STORE_URL#">
+                <svg class="chrome-icon" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M13.6 18 6.7 14A20 20 0 0 1 41.3 14L34.4 18A12 12 0 0 0 13.6 18Z"/><path fill="#34A853" d="m34.4 18 6.9-4A20 20 0 0 1 24 44v-8a12 12 0 0 0 10.4-18Z"/><path fill="#FBBC05" d="M24 36v8A20 20 0 0 1 6.7 14l6.9 4A12 12 0 0 0 24 36Z"/><circle cx="24" cy="24" r="12" fill="#fff"/><circle cx="24" cy="24" r="8" fill="#4285F4"/></svg>
+                Add to Chrome
+              </a>
+            </div>
+            <p class="trust-copy"><span>✓</span> No subscription required &nbsp; <span>✓</span> Works with your existing HeyGen plan &nbsp; <span>✓</span> Built for HeyGen power users</p>
+          </div>
+
+          <aside class="product-preview extension-simulation" aria-label="Animated HeyGen Bulk Downloader extension simulation">
+            <div class="sim-topbar">
+              <div class="sim-identity"><span class="sim-name">HeyGen Bulk Downloader</span></div>
+              <span class="sim-connection">Connected</span>
+            </div>
+            <div class="sim-activity">
+              <div class="activity-library">
+                <span class="activity-library-label">Your HeyGen library</span>
+                <div class="activity-library-number"><strong>86</strong><span>videos ready to download</span></div>
+              </div>
+              <div class="activity-job"><strong>Downloading all videos</strong><span>12 of 86 complete</span></div>
+              <div class="activity-track"></div>
+              <div class="activity-list">
+                <div class="activity-row"><span class="activity-thumb"></span><span><span class="activity-title">Q3 product launch</span><span class="activity-meta">1080p · Aug 18, 2026</span></span><span class="activity-status done">Saved</span></div>
+                <div class="activity-row"><span class="activity-thumb"></span><span><span class="activity-title">Customer onboarding</span><span class="activity-meta">1080p · Aug 16, 2026</span></span><span class="activity-status loading">Downloading</span></div>
+                <div class="activity-row"><span class="activity-thumb"></span><span><span class="activity-title">Weekly social cut</span><span class="activity-meta">1080p · Aug 15, 2026</span></span><span class="activity-status">Queued</span></div>
+              </div>
+            </div>
+            <div class="activity-footer">Saving to Downloads / HeyGen Export 2026-08-18</div>
+          </aside>
+        </section>
+
+        <section class="section">
+          <div class="section-heading"><span class="eyebrow">Simple by design</span><h2>Ready in under a minute.</h2></div>
+          <div class="steps">
+            <article class="step"><span class="step-number">01</span><h3>Install and activate</h3><p>Add the extension to Chrome and enter your license key.</p></article>
+            <article class="step"><span class="step-number">02</span><h3>Connect HeyGen</h3><p>Create a HeyGen developer API key, then paste it into the extension.</p></article>
+            <article class="step"><span class="step-number">03</span><h3>Download or export</h3><p>Review your ready videos, download the lot, or export the library to CSV.</p></article>
+          </div>
+        </section>
+
+        <section class="section demo-section">
+          <div class="section-heading"><span class="eyebrow">See it work</span><h2>From library to local files in a single flow.</h2><p class="section-intro">Place the recorded product demo here. It sits immediately after visitors understand the setup, before they assess the feature set and price.</p></div>
+          <div class="demo-frame">
+            <!-- TODO: Replace this block with a compressed, autoplay-muted demo GIF or MP4 poster/video. -->
+            <div class="demo-placeholder"><span class="demo-play">▶</span><strong>Product demo placeholder</strong><p>Show connecting the API key, the video count, and the bulk download action.</p></div>
+          </div>
+          <p class="demo-caption">A short 10–20 second loop is the right format here—show the real extension rather than a second static screenshot.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-heading"><span class="eyebrow">The essentials</span><h2>Everything you need, nothing you don't</h2></div>
+          <div class="feature-grid">
+            <article class="feature-card"><div class="feature-icon">↓</div><h3>Bulk download</h3><p>Every completed video, downloaded automatically.</p></article>
+            <article class="feature-card"><div class="feature-icon">▣</div><h3>Auto-organized folders</h3><p>Files land in a dated folder, ready to use.</p></article>
+            <article class="feature-card"><div class="feature-icon">⌘</div><h3>CSV export</h3><p>Export your full library metadata anytime.</p></article>
+            <article class="feature-card"><div class="feature-icon">CC</div><h3>Captioned versions</h3><p>Downloads captioned video files when available.</p></article>
+          </div>
+        </section>
+
+        <section class="section pricing-section">
+          <div class="section-heading"><span class="eyebrow">Simple pricing</span><h2>A small tool with a one-time price.</h2></div>
+          <div class="pricing-card">
+            <div class="pricing-accent"></div>
+            <div class="pricing-content">
+              <div class="pricing-label">One-time payment</div>
+              <div class="price">$14.99</div>
+              <p class="pricing-subtext">Lifetime access. No subscription.</p>
+              <ul class="checklist"><li><span>✓</span>Unlimited bulk downloads</li><li><span>✓</span>CSV metadata export</li><li><span>✓</span>Auto-organized folders</li><li><span>✓</span>Free updates</li><li><span>✓</span>Email support</li></ul>
+              <!-- Gumroad license checkout URL -->
+              <a class="button button-primary" href="https://grabkit.gumroad.com/l/heygen-bulk-downloader" target="_blank" rel="noopener">Get License Key</a>
+              <p class="secure-text">Secure checkout via Gumroad</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-heading"><span class="eyebrow">Questions, answered</span><h2>FAQ</h2></div>
+          <div class="faq-list">
+            <article class="faq-item"><button class="faq-trigger" aria-expanded="false" aria-controls="faq-1">Do I need a paid HeyGen plan?</button><div class="faq-answer" id="faq-1">No. The extension works with any HeyGen plan, including Free. You just need a HeyGen API key, which you can grab directly from the dashboard - when you install the extension you will be directly taken to the page where you can create the API key easily.</div></article>
+            <article class="faq-item"><button class="faq-trigger" aria-expanded="false" aria-controls="faq-2">Will this use my HeyGen credits?</button><div class="faq-answer" id="faq-2">No. Fetching and downloading your videos does not consume any HeyGen generation credits.</div></article>
+            <article class="faq-item"><button class="faq-trigger" aria-expanded="false" aria-controls="faq-3">Is my API key safe?</button><div class="faq-answer" id="faq-3">Your API key is stored using Chrome storage in your browser profile and is used by the extension to make requests directly to HeyGen's API. It is not sent to a separate product server.</div></article>
+            <article class="faq-item"><button class="faq-trigger" aria-expanded="false" aria-controls="faq-4">What if I have hundreds of videos?</button><div class="faq-answer" id="faq-4">The extension automatically handles pagination and fetches your entire library, no matter how large.</div></article>
+            <article class="faq-item"><button class="faq-trigger" aria-expanded="false" aria-controls="faq-5">Is this an official HeyGen product?</button><div class="faq-answer" id="faq-5">No. HeyGen Bulk Downloader is an independent tool built using HeyGen's public API. It is not affiliated with or endorsed by HeyGen.</div></article>
+            <article class="faq-item"><button class="faq-trigger" aria-expanded="false" aria-controls="faq-6">Where will my downloads go?</button><div class="faq-answer" id="faq-6">Completed videos are downloaded through Chrome into a dated HeyGen folder inside your normal Downloads folder, so each export stays together.</div></article>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <span>© 2026 HeyGen Bulk Downloader · Independent tool, not affiliated with HeyGen</span>
+        <span><a href="/heygen-bulk-downloader/privacy/">Privacy Policy</a> · <a href="mailto:support.grabkit@gmail.com">support</a></span>
+      </footer>
+    </div>
+
+    <script>
+      document.querySelectorAll('.faq-trigger').forEach((button) => {
+        button.addEventListener('click', () => {
+          const isOpen = button.getAttribute('aria-expanded') === 'true';
+          const answer = document.getElementById(button.getAttribute('aria-controls'));
+          button.setAttribute('aria-expanded', String(!isOpen));
+          answer.classList.toggle('is-open', !isOpen);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Privacy Policy for the HeyGen Bulk Downloader Chrome extension.">
+    <title>Privacy Policy - HeyGen Bulk Downloader</title>
+    <style>
+      :root { --background: #0f0f11; --surface: #19191d; --line: #2e2e35; --text: #f4f3f6; --muted: #aaa8b3; --subtle: #74727d; --brand: #6c47ff; --brand-light: #8b70ff; }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--background); color: var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+      a { color: inherit; }
+      .shell { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+      .site-nav { align-items: center; display: flex; height: 82px; justify-content: space-between; }
+      .product-name { align-items: center; color: var(--text); display: inline-flex; font-size: 17px; font-weight: 750; gap: 9px; letter-spacing: -.45px; text-decoration: none; }
+      .product-name span { color: var(--brand); }
+      .product-name .product-name-primary { color: var(--text); margin-right: -5px; }
+      .product-logo { border-radius: 7px; display: block; height: 34px; width: 34px; }
+      .back-link { color: var(--muted); font-size: 14px; font-weight: 600; text-decoration: none; }
+      .back-link:hover { color: var(--text); }
+      article { border-top: 1px solid var(--line); margin: 46px auto 92px; max-width: 680px; padding-top: 52px; }
+      .eyebrow { color: var(--brand-light); font-size: 12px; font-weight: 750; letter-spacing: .13em; text-transform: uppercase; }
+      h1 { font-size: clamp(38px, 5vw, 58px); letter-spacing: -.06em; line-height: 1; margin: 16px 0 13px; }
+      .updated { color: var(--subtle); font-size: 14px; margin: 0 0 46px; }
+      h2 { font-size: 23px; letter-spacing: -.04em; line-height: 1.15; margin: 42px 0 13px; }
+      p, li { color: var(--muted); font-size: 16px; line-height: 1.75; }
+      p { margin: 0 0 18px; }
+      ul { margin: 0 0 18px; padding-left: 24px; }
+      li { margin-bottom: 9px; padding-left: 3px; }
+      strong { color: var(--text); }
+      code { background: #272432; border-radius: 4px; color: #cabeff; font-size: .9em; padding: 2px 5px; }
+      article a { color: #cabeff; text-decoration-color: var(--brand-light); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+      footer { border-top: 1px solid var(--line); color: var(--subtle); display: flex; font-size: 13px; justify-content: space-between; padding: 28px 0 38px; }
+      footer a { color: var(--muted); text-decoration: none; }
+      footer a:hover { color: var(--text); }
+      @media (max-width: 640px) { .shell { padding: 0 20px; } .site-nav { height: 74px; } article { margin-top: 28px; padding-top: 38px; } h2 { font-size: 21px; } p, li { font-size: 15px; } footer { display: block; line-height: 2; } }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <nav class="site-nav">
+        <a class="product-name" href="/heygen-bulk-downloader/" aria-label="HeyGen Bulk Downloader home">
+          <img class="product-logo" src="../../heygen_chrome_extension_icon.png" alt="">
+          <span class="product-name-primary">HeyGen</span>
+          <span>Bulk Downloader</span>
+        </a>
+        <a class="back-link" href="/">GrabKit home</a>
+      </nav>
+      <main>
+        <article>
+          <span class="eyebrow">HeyGen Bulk Downloader</span>
+          <h1>Privacy Policy</h1>
+          <p class="updated">Last updated: August 19, 2026</p>
+
+          <h2>Overview</h2>
+          <p>HeyGen Bulk Downloader (&quot;the Extension&quot;) is a Chrome browser extension built and operated by an independent developer (&quot;we&quot;, &quot;us&quot;). This page explains what information the Extension handles, how it is used, and what we do not collect.</p>
+          <p>We built this Extension with a minimal data footprint by design. We do not run servers that receive or store your personal data. We do not sell, share, or monetize any information from users.</p>
+
+          <h2>What the Extension stores locally</h2>
+          <p>The Extension stores the following items in your browser's local storage (<code>chrome.storage.sync</code>) on your own device:</p>
+          <ul>
+            <li><strong>Your Gumroad license key</strong> — stored to verify that you have a valid license. This key is periodically re-verified against Gumroad's public license verification API.</li>
+            <li><strong>Your HeyGen API key</strong> — stored so you do not need to re-enter it each time you open the Extension. This key is used exclusively to communicate with HeyGen's servers on your behalf.</li>
+            <li><strong>Your last download date</strong> — a simple timestamp stored locally to display in the Extension UI.</li>
+          </ul>
+          <p>None of this information is transmitted to us. It lives in your browser and stays there.</p>
+
+          <h2>What the Extension transmits to third-party services</h2>
+          <p><strong>To HeyGen (api.heygen.com):</strong> Your HeyGen API key is sent with each request to HeyGen's servers to retrieve your video library and download URLs. This is identical to what the HeyGen web app does when you log in and view your videos. Your API key is sent directly from your browser to HeyGen — it does not pass through our servers. HeyGen's own privacy policy governs how they handle this data: <a href="https://www.heygen.com/privacy-policy" target="_blank" rel="noopener">heygen.com/privacy-policy</a>.</p>
+          <p><strong>To Gumroad (api.gumroad.com):</strong> When you activate the Extension or when the Extension silently re-verifies your license on startup, your Gumroad license key is sent to Gumroad's license verification endpoint. This is a standard Gumroad-provided mechanism for license validation. Gumroad's own privacy policy governs how they handle this: <a href="https://gumroad.com/privacy" target="_blank" rel="noopener">gumroad.com/privacy</a>.</p>
+          <p><strong>To HeyGen file servers (files.heygen.ai):</strong> When you trigger a bulk download, your browser downloads video files directly from HeyGen's file hosting servers. This is a standard browser file download, identical to clicking a direct link in Chrome.</p>
+
+          <h2>What we do not collect</h2>
+          <ul>
+            <li>We do not operate any backend server or database.</li>
+            <li>We do not receive, log, or store your HeyGen API key.</li>
+            <li>We do not receive, log, or store your license key beyond what Gumroad's API requires for verification.</li>
+            <li>We do not collect analytics, usage statistics, or telemetry of any kind.</li>
+            <li>We do not collect your name, email address, or any personally identifiable information through the Extension itself.</li>
+            <li>We do not use cookies.</li>
+            <li>We do not track which videos you download or how often you use the Extension.</li>
+          </ul>
+
+          <h2>Permissions the Extension requests and why</h2>
+          <p>The Extension requests the following Chrome permissions:</p>
+          <ul>
+            <li><strong>storage</strong> — to save your API key and license key locally in your browser so you don't have to re-enter them each session.</li>
+            <li><strong>downloads</strong> — to trigger video file downloads to your Downloads folder on your behalf.</li>
+            <li><strong>host permissions for api.heygen.com</strong> — to communicate with HeyGen's API to fetch your video list and download URLs.</li>
+            <li><strong>host permissions for api.gumroad.com</strong> — to verify your license key against Gumroad's verification endpoint.</li>
+          </ul>
+          <p>No other permissions are requested or used.</p>
+
+          <h2>Data retention</h2>
+          <p>All data the Extension stores (your API key, license key, and last download timestamp) remains in your browser until you either:</p>
+          <ul>
+            <li>Click &quot;Disconnect&quot; in the Extension, which removes your HeyGen API key from storage.</li>
+            <li>Uninstall the Extension, which removes all stored data.</li>
+            <li>Manually clear your browser's extension storage.</li>
+          </ul>
+          <p>We have no way to delete data stored in your browser on your behalf because we never receive it in the first place.</p>
+
+          <h2>Children's privacy</h2>
+          <p>This Extension is not directed at children under the age of 13 and we do not knowingly collect any information from children.</p>
+
+          <h2>Changes to this policy</h2>
+          <p>If we update this policy, we will update the &quot;Last updated&quot; date at the top of this page. Continued use of the Extension after any changes constitutes acceptance of the updated policy. We will not make changes that retroactively grant us new rights over data we do not currently collect.</p>
+
+          <h2>Contact</h2>
+          <p>If you have any questions about this privacy policy or how the Extension handles your data, contact us at <a href="mailto:support.grabkit@gmail.com">support.grabkit@gmail.com</a>.</p>
+        </article>
+      </main>
+      <footer><span>© 2026 HeyGen Bulk Downloader · Independent tool, not affiliated with HeyGen</span><a href="mailto:support.grabkit@gmail.com">support</a></footer>
+    </div>
+  </body>
+</html>
